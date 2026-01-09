@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cko10g0f1tdy2"]
+
+[ext_resource type="Script" uid="uid://dy88stv6m3l3a" path="res://Scripts/temp_obstacle_script.gd" id="1_rugpe"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4n2wj"]
+size = Vector3(0.63238525, 0.59521484, 0.07281494)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_nqwff"]
+size = Vector2(64, 64)
+
+[node name="temp_obstacle" type="Area3D"]
+script = ExtResource("1_rugpe")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010406494, 0.026611328, -0.0030822754)
+shape = SubResource("BoxShape3D_4n2wj")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+texture = SubResource("PlaceholderTexture2D_nqwff")
