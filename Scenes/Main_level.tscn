@@ -1,7 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cnoe42obwtl5b"]
+[gd_scene load_steps=8 format=3 uid="uid://cnoe42obwtl5b"]
 
 [ext_resource type="Script" uid="uid://b1kj8237jrpvq" path="res://Scripts/main_level.gd" id="1_hyj3q"]
+[ext_resource type="Script" uid="uid://gbju3gf3x0ld" path="res://Scripts/player.gd" id="2_7g051"]
 [ext_resource type="Script" uid="uid://037us86n1wnp" path="res://Scripts/temp_score.gd" id="2_y7i0d"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4n2wj"]
+size = Vector3(1, 0.67962646, 0.4116211)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_cwhc2"]
 size = Vector2(5.88, 8)
@@ -15,7 +19,18 @@ size = Vector2(2.44, 8)
 [node name="MainLevel" type="Node3D"]
 script = ExtResource("1_hyj3q")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13868338, 0)
+axis_lock_linear_y = true
+axis_lock_linear_z = true
+motion_mode = 1
+script = ExtResource("2_7g051")
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0038146973, -0.41674805)
+shape = SubResource("BoxShape3D_4n2wj")
 
 [node name="Street" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.34927496, -4.4455905)

@@ -1,16 +1,20 @@
 extends Node3D
 
+# Gameobjects
 @onready var temp_obstacle = preload("res://Scenes/Obstacles/temp_obstacle.tscn")
 @onready var spawn_points = $Spawn_Points.get_children()
 @onready var score_label = $CanvasLayer/Score
 
+#Spawn rates of objects
 @export var cooldown = 2
 var cooldown_max
 
+#Starting speed allows us to speed up objects over time
 @export var starting_speed = 5
 var speed_for_obstacle
 var score = 0
 
+# Pole logic / Swaps side of road once score % pole_check = 0
 var pole_on_left = true
 @export var pole_check = 2
 var pole_max
@@ -20,12 +24,14 @@ func _ready() -> void:
 	pole_max = pole_check
 
 func _process(delta):
+	#Cooldown, score update, set speed
 	cooldown -= 1 * delta
 	score += 1 * delta * (1 + score/100)
 	score_label.score_to_display = int(round(score * 100))
 	speed_for_obstacle = -starting_speed * (1 + score/100)
 	cooldown_max = clamp(cooldown_max - (score/1000 * delta), .5, cooldown_max)
 	
+	#Spawn of random obstacle
 	if cooldown < 0:
 		cooldown = cooldown_max
 		var obstacle_instance = temp_obstacle.instantiate()
@@ -33,6 +39,7 @@ func _process(delta):
 		obstacle_instance.global_position = spawn_points[randi_range(0,3)].global_position
 		obstacle_instance.speed = speed_for_obstacle
 
+	#Pole logic
 	pole_check += 1 * delta * (1 + score/100)
 
 	if (pole_check >= pole_max):
