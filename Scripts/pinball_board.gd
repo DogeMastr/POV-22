@@ -11,10 +11,9 @@ var flipFalloff = .005
 var fLeftVel = 0
 var fRightVel = 0
 
-func _ready():
-	pass
-	
-	
+func _ready() -> void:
+	restAngle = deg_to_rad(restAngle)
+
 func _process(_delta: float):
 	# LEFT FLIPPER CONTROLS
 	if Input.is_action_just_pressed("FlipperLeft") and FlipperLeft.rotation >= restAngle:
@@ -31,7 +30,6 @@ func _process(_delta: float):
 	if Input.is_action_just_pressed("FlipperRight") and FlipperRight.rotation <= -restAngle:
 		fRightVel = flipStrength
 		print(FlipperRight.rotation)
-	pass
 	
 	FlipperRight.rotation += fRightVel
 	fRightVel -= flipFalloff
