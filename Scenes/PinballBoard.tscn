@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://guv464dnju0t"]
+[gd_scene load_steps=13 format=3 uid="uid://guv464dnju0t"]
 
 [ext_resource type="PackedScene" uid="uid://cbjk8x8xblibm" path="res://Scenes/PinballBall.tscn" id="1_67n1w"]
-[ext_resource type="Script" path="res://Scripts/pinball_board.gd" id="1_iq81k"]
+[ext_resource type="Script" uid="uid://bgqxbc1oqgv0v" path="res://Scripts/pinball_board.gd" id="1_iq81k"]
 
 [sub_resource type="Gradient" id="Gradient_1n6ji"]
 colors = PackedColorArray(1, 0.2901961, 0, 1, 0.58431375, 0.14117648, 0.9607843, 1)
@@ -16,6 +16,21 @@ size = Vector2(20, 426)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_67n1w"]
 size = Vector2(20, 426)
+
+[sub_resource type="Gradient" id="Gradient_iq81k"]
+offsets = PackedFloat32Array(0, 0.91333336, 1)
+colors = PackedColorArray(1, 0, 1, 1, 0.1882353, 0.17254902, 1, 1, 0, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8pyth"]
+gradient = SubResource("Gradient_iq81k")
+width = 20
+height = 20
+fill = 1
+fill_from = Vector2(0.5, 0.50934577)
+fill_to = Vector2(0.18691589, 0.8364486)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t8pbe"]
+radius = 8.0
 
 [sub_resource type="Gradient" id="Gradient_67n1w"]
 
@@ -87,8 +102,50 @@ shape = SubResource("RectangleShape2D_1n6ji")
 position = Vector2(0, 163)
 texture = SubResource("PlaceholderTexture2D_67n1w")
 
+[node name="5" type="StaticBody2D" parent="Walls"]
+position = Vector2(27, 12)
+rotation = -1.5707964
+scale = Vector2(1, 0.57)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/5"]
+position = Vector2(0, 163)
+shape = SubResource("RectangleShape2D_1n6ji")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/5"]
+position = Vector2(0, 163)
+texture = SubResource("PlaceholderTexture2D_67n1w")
+
+[node name="Bumpers" type="Node2D" parent="."]
+
+[node name="1" type="StaticBody2D" parent="Bumpers"]
+position = Vector2(89, 131)
+
+[node name="Sprite2D" type="Sprite2D" parent="Bumpers/1"]
+texture = SubResource("GradientTexture2D_8pyth")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bumpers/1"]
+shape = SubResource("CircleShape2D_t8pbe")
+
+[node name="2" type="StaticBody2D" parent="Bumpers"]
+position = Vector2(127, 163)
+
+[node name="Sprite2D" type="Sprite2D" parent="Bumpers/2"]
+texture = SubResource("GradientTexture2D_8pyth")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bumpers/2"]
+shape = SubResource("CircleShape2D_t8pbe")
+
+[node name="3" type="StaticBody2D" parent="Bumpers"]
+position = Vector2(151, 114)
+
+[node name="Sprite2D" type="Sprite2D" parent="Bumpers/3"]
+texture = SubResource("GradientTexture2D_8pyth")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bumpers/3"]
+shape = SubResource("CircleShape2D_t8pbe")
+
 [node name="PinballBall" parent="." instance=ExtResource("1_67n1w")]
-position = Vector2(57, 41)
+position = Vector2(78, 92)
 
 [node name="FlipperLeft" type="CharacterBody2D" parent="."]
 position = Vector2(67, 354)
