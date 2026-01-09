@@ -1,4 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://guv464dnju0t"]
+[gd_scene load_steps=10 format=3 uid="uid://guv464dnju0t"]
+
+[ext_resource type="PackedScene" uid="uid://cbjk8x8xblibm" path="res://Scenes/PinballBall.tscn" id="1_67n1w"]
+[ext_resource type="Script" path="res://Scripts/pinball_board.gd" id="1_iq81k"]
 
 [sub_resource type="Gradient" id="Gradient_1n6ji"]
 colors = PackedColorArray(1, 0.2901961, 0, 1, 0.58431375, 0.14117648, 0.9607843, 1)
@@ -14,7 +17,21 @@ size = Vector2(20, 426)
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_67n1w"]
 size = Vector2(20, 426)
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="Gradient" id="Gradient_67n1w"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_iq81k"]
+gradient = SubResource("Gradient_67n1w")
+width = 12
+height = 50
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8pyth"]
+radius = 5.2
+height = 53.35
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("FlipperLeft", "FlipperRight")]
+script = ExtResource("1_iq81k")
+FlipperLeft = NodePath("FlipperLeft")
+FlipperRight = NodePath("FlipperRight")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(121, 213)
@@ -34,7 +51,7 @@ position = Vector2(0, 163)
 texture = SubResource("PlaceholderTexture2D_67n1w")
 
 [node name="2" type="StaticBody2D" parent="Walls"]
-position = Vector2(230, 48)
+position = Vector2(230, 50)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/2"]
 position = Vector2(0, 163)
@@ -45,8 +62,9 @@ position = Vector2(0, 163)
 texture = SubResource("PlaceholderTexture2D_67n1w")
 
 [node name="3" type="StaticBody2D" parent="Walls"]
-position = Vector2(45, 51)
-scale = Vector2(1.8909348, 0.27871972)
+position = Vector2(18, 311)
+rotation = -0.7853982
+scale = Vector2(1.0950238, 0.1822081)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/3"]
 position = Vector2(0, 163)
@@ -55,3 +73,47 @@ shape = SubResource("RectangleShape2D_1n6ji")
 [node name="Sprite2D" type="Sprite2D" parent="Walls/3"]
 position = Vector2(0, 163)
 texture = SubResource("PlaceholderTexture2D_67n1w")
+
+[node name="4" type="StaticBody2D" parent="Walls"]
+position = Vector2(224.00002, 310)
+rotation = 0.7853982
+scale = Vector2(0.834, 0.182)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/4"]
+position = Vector2(0, 163)
+shape = SubResource("RectangleShape2D_1n6ji")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/4"]
+position = Vector2(0, 163)
+texture = SubResource("PlaceholderTexture2D_67n1w")
+
+[node name="PinballBall" parent="." instance=ExtResource("1_67n1w")]
+position = Vector2(57, 41)
+
+[node name="FlipperLeft" type="CharacterBody2D" parent="."]
+position = Vector2(67, 354)
+rotation = 0.7853982
+
+[node name="Sprite2D" type="Sprite2D" parent="FlipperLeft"]
+position = Vector2(21, 2)
+rotation = 1.5707964
+texture = SubResource("GradientTexture2D_iq81k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlipperLeft"]
+position = Vector2(22, 2)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8pyth")
+
+[node name="FlipperRight" type="CharacterBody2D" parent="."]
+position = Vector2(174, 354)
+rotation = -0.7853982
+
+[node name="Sprite2D" type="Sprite2D" parent="FlipperRight"]
+position = Vector2(-20, 2)
+rotation = 1.5707964
+texture = SubResource("GradientTexture2D_iq81k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlipperRight"]
+position = Vector2(-20, 2)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8pyth")

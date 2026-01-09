@@ -9,7 +9,9 @@ size = Vector2(25, 25)
 radius = 12.5
 
 [node name="PinballBall" type="RigidBody2D"]
+mass = 0.2
 physics_material_override = SubResource("PhysicsMaterial_ffwce")
+gravity_scale = 0.5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("PlaceholderTexture2D_ffwce")
