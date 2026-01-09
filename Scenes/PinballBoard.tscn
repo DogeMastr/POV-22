@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://guv464dnju0t"]
+
+[sub_resource type="Gradient" id="Gradient_1n6ji"]
+colors = PackedColorArray(1, 0.2901961, 0, 1, 0.58431375, 0.14117648, 0.9607843, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_67n1w"]
+gradient = SubResource("Gradient_1n6ji")
+width = 240
+height = 426
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1n6ji"]
+size = Vector2(20, 426)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_67n1w"]
+size = Vector2(20, 426)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(121, 213)
+texture = SubResource("GradientTexture2D_67n1w")
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="1" type="StaticBody2D" parent="Walls"]
+position = Vector2(10, 50)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/1"]
+position = Vector2(0, 163)
+shape = SubResource("RectangleShape2D_1n6ji")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/1"]
+position = Vector2(0, 163)
+texture = SubResource("PlaceholderTexture2D_67n1w")
+
+[node name="2" type="StaticBody2D" parent="Walls"]
+position = Vector2(230, 48)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/2"]
+position = Vector2(0, 163)
+shape = SubResource("RectangleShape2D_1n6ji")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/2"]
+position = Vector2(0, 163)
+texture = SubResource("PlaceholderTexture2D_67n1w")
+
+[node name="3" type="StaticBody2D" parent="Walls"]
+position = Vector2(45, 51)
+scale = Vector2(1.8909348, 0.27871972)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/3"]
+position = Vector2(0, 163)
+shape = SubResource("RectangleShape2D_1n6ji")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/3"]
+position = Vector2(0, 163)
+texture = SubResource("PlaceholderTexture2D_67n1w")
