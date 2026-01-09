@@ -16,12 +16,13 @@ func _process(delta: float) -> void:
 	if hori_input != 0:
 		velocity.x += speed * hori_input * delta
 		
+	velocity.x = clampf(velocity.x, -7.0, 7)
 	velocity.x = move_toward(velocity.x, 0, deceleration * delta)
 	
 	position.x = clampf(position.x, -(size_of_street/2 - collision.shape.size.x), size_of_street/2 - collision.shape.size.x)
 	
 	if (position.x <= -(size_of_street/2 - collision.shape.size.x) and hori_input != 1) or (position.x >= size_of_street/2 - collision.shape.size.x and hori_input != -1):
-		velocity.x = 0
+		velocity.x = -velocity.x *.5
 	
 	cam.transform.basis = Basis()
 	cam.rotate_object_local(Vector3.FORWARD, clampf(velocity.x/50, deg_to_rad(-10), deg_to_rad(10)))
