@@ -208,3 +208,5 @@ texture = SubResource("GradientTexture2D_8pyth")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bumpers/4"]
 shape = SubResource("CircleShape2D_t8pbe")
+
+[connection signal="ballSunk" from="PinballBall" to="." method="_on_pinball_ball_sunk"]

@@ -34,3 +34,10 @@ func _process(_delta: float):
 	if FlipperRight.rotation <= -restAngle:
 		fRightVel = 0
 		FlipperRight.rotation = -restAngle
+
+
+func _on_pinball_ball_sunk(sinkhole: Node) -> void:
+	# ball has just been sunk
+	# if sinkhole 2 is sunk then start a random microgame?
+	# if all sinkholes are sunk then release all balls, then re-enable the sinkhole colliders
+	pass # Replace with function body.
