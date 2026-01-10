@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cnoe42obwtl5b"]
+[gd_scene load_steps=15 format=3 uid="uid://cnoe42obwtl5b"]
 
 [ext_resource type="Script" uid="uid://b1kj8237jrpvq" path="res://Scripts/main_level.gd" id="1_hyj3q"]
 [ext_resource type="PackedScene" uid="uid://6mf08mbydxlr" path="res://Scenes/player.tscn" id="2_7g051"]
 [ext_resource type="Script" uid="uid://037us86n1wnp" path="res://Scripts/temp_score.gd" id="2_y7i0d"]
+[ext_resource type="Texture2D" uid="uid://dphe2lpro8ltx" path="res://Assets/Textures/ground placeholder street.png" id="3_4n2wj"]
+[ext_resource type="Shader" uid="uid://3x46yw0ykb2c" path="res://Scripts/shader/Main_level.gdshader" id="3_nqwff"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7g051"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -14,19 +16,33 @@ sky_material = SubResource("ProceduralSkyMaterial_7g051")
 
 [sub_resource type="Environment" id="Environment_nqwff"]
 background_mode = 2
-background_energy_multiplier = 0.2
 sky = SubResource("Sky_4n2wj")
+ambient_light_energy = 16.0
 tonemap_mode = 2
 fog_enabled = true
-fog_light_color = Color(9.535274e-05, 0.00011561906, 0.00015177995, 1)
+fog_light_color = Color(0, 0, 0, 1)
 fog_light_energy = 0.0
 fog_density = 0.25
 volumetric_fog_density = 0.199
 volumetric_fog_emission_energy = 0.0
 volumetric_fog_detail_spread = 1.9792628
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_cwhc2"]
-size = Vector2(5.88, 8)
+[sub_resource type="ViewportTexture" id="ViewportTexture_g5c6q"]
+viewport_path = NodePath("Walls/Street/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nqwff"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_g5c6q")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_g5c6q"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_nqwff")
+size = Vector2(19.2, 10.8)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eoksa"]
+shader = ExtResource("3_nqwff")
+shader_parameter/direction = Vector2(0, -1)
+shader_parameter/speed = -1.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_y7i0d"]
 size = Vector2(2.44, 8)
@@ -43,17 +59,42 @@ environment = SubResource("Environment_nqwff")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 light_color = Color(0, 0, 0, 1)
+light_energy = 0.0
 shadow_enabled = true
+sky_mode = 2
 
 [node name="Player" parent="." instance=ExtResource("2_7g051")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13868338, 0)
 
 [node name="Walls" type="Node" parent="."]
 
-[node name="Street" type="MeshInstance3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.34927496, -4.4455905)
-mesh = SubResource("PlaneMesh_cwhc2")
-skeleton = NodePath("../..")
+[node name="Street" type="Node3D" parent="Walls"]
+transform = Transform3D(0.305, 0, 0, 0, -1.3331974e-08, 0.305, 0, -0.305, -1.3331974e-08, 0, -0.8852439, -1.5336735)
+
+[node name="Floor" type="MeshInstance3D" parent="Walls/Street"]
+transform = Transform3D(-0.99999887, 0.0017453748, 0, 7.6292764e-11, 4.371134e-08, 1.0000002, 0.0017453748, 0.99999887, -4.3711406e-08, 0, 0, 1.7084938)
+mesh = SubResource("PlaneMesh_g5c6q")
+
+[node name="Floor2" type="MeshInstance3D" parent="Walls/Street"]
+transform = Transform3D(-0.99999887, 0.0017453749, 0, 7.629277e-11, 4.3711346e-08, 1.0000002, 0.0017453749, 0.99999887, -4.3711413e-08, 0, 10.337675, 1.7084943)
+mesh = SubResource("PlaneMesh_g5c6q")
+
+[node name="Floor3" type="MeshInstance3D" parent="Walls/Street"]
+transform = Transform3D(-0.99999887, 0.0017453749, 0, 7.629277e-11, 4.3711346e-08, 1.0000002, 0.0017453749, 0.99999887, -4.3711413e-08, 0, 20.443325, 1.7084948)
+mesh = SubResource("PlaneMesh_g5c6q")
+
+[node name="Floor4" type="MeshInstance3D" parent="Walls/Street"]
+transform = Transform3D(-0.99999887, 0.0017453749, 0, 7.629277e-11, 4.3711346e-08, 1.0000002, 0.0017453749, 0.99999887, -4.3711413e-08, 0, 29.318714, 1.7084951)
+mesh = SubResource("PlaneMesh_g5c6q")
+
+[node name="SubViewport" type="SubViewport" parent="Walls/Street"]
+size = Vector2i(1920, 1080)
+
+[node name="Road_sprite" type="Sprite2D" parent="Walls/Street/SubViewport"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_eoksa")
+texture = ExtResource("3_4n2wj")
+offset = Vector2(960, 540)
 
 [node name="L_Wall" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -2.8878536, 0.82300186, -4.4455905)
@@ -63,11 +104,6 @@ skeleton = NodePath("../..")
 [node name="R_Wall" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 2.8837662, 0.83035934, -4.4455905)
 mesh = SubResource("PlaneMesh_7g051")
-skeleton = NodePath("../..")
-
-[node name="Street2" type="MeshInstance3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.34927496, -12.445671)
-mesh = SubResource("PlaneMesh_cwhc2")
 skeleton = NodePath("../..")
 
 [node name="L_Wall2" type="MeshInstance3D" parent="Walls"]

@@ -48,7 +48,7 @@ func _ready() -> void:
 
 func _process(delta):
 	#Cooldown, score update, set speed
-	cooldown -= 1 * delta
+	#cooldown -= 1 * delta
 	score_label.score_to_display = int(round(score))
 	speed_for_obstacle = -starting_speed * car_acceleration
 	cooldown_max = clamp(cooldown_max - (score/10000 * delta), .6, cooldown_max)

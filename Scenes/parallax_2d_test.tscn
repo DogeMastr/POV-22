@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://x8yixk7ho57r"]
+
+[ext_resource type="Texture2D" uid="uid://dphe2lpro8ltx" path="res://Assets/Textures/ground placeholder street.png" id="1_5g75e"]
+
+[node name="Parallax2DTest" type="Node2D"]
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_scale = Vector2(1, 3.29)
+repeat_size = Vector2(0, 650)
+autoscroll = Vector2(0, -800)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(577.00006, 321.5)
+scale = Vector2(0.6027778, 0.6027778)
+texture = ExtResource("1_5g75e")
