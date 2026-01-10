@@ -1,7 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://cnoe42obwtl5b"]
+[gd_scene load_steps=12 format=3 uid="uid://cnoe42obwtl5b"]
 
 [ext_resource type="Script" uid="uid://b1kj8237jrpvq" path="res://Scripts/main_level.gd" id="1_hyj3q"]
-[ext_resource type="Script" uid="uid://gbju3gf3x0ld" path="res://Scripts/player.gd" id="2_7g051"]
+[ext_resource type="PackedScene" uid="uid://6mf08mbydxlr" path="res://Scenes/player.tscn" id="2_7g051"]
 [ext_resource type="Script" uid="uid://037us86n1wnp" path="res://Scripts/temp_score.gd" id="2_y7i0d"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7g051"]
@@ -24,9 +24,6 @@ fog_density = 0.25
 volumetric_fog_density = 0.199
 volumetric_fog_emission_energy = 0.0
 volumetric_fog_detail_spread = 1.9792628
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_4n2wj"]
-size = Vector3(0.79919434, 0.58187866, 0.4116211)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_cwhc2"]
 size = Vector2(5.88, 8)
@@ -54,35 +51,8 @@ transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545
 light_color = Color(0, 0, 0, 1)
 shadow_enabled = true
 
-[node name="Player" type="CharacterBody3D" parent="."]
+[node name="Player" parent="." instance=ExtResource("2_7g051")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13868338, 0)
-collision_layer = 2
-collision_mask = 5
-axis_lock_linear_y = true
-axis_lock_linear_z = true
-motion_mode = 1
-script = ExtResource("2_7g051")
-
-[node name="Camera3D" type="Camera3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 0.9802574, 0.19772577, 0, -0.19772577, 0.9802574, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0138549805, -0.045059204, -0.41674805)
-shape = SubResource("BoxShape3D_4n2wj")
-
-[node name="Headlight_L" type="SpotLight3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 0.9961947, 0.08715574, 0, -0.08715574, 0.9961947, -0.34715313, 0, 0)
-light_color = Color(1, 0.8156863, 0.3764706, 1)
-spot_range = 12.0
-spot_attenuation = 2.0
-spot_angle = 40.0
-
-[node name="Headlight_R" type="SpotLight3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 0.9962706, 0.08628641, 0, -0.08628641, 0.9962706, 0.38771367, 0, 0)
-light_color = Color(1, 0.8156863, 0.3764706, 1)
-spot_range = 12.0
-spot_attenuation = 2.0
-spot_angle = 40.0
 
 [node name="Walls" type="Node" parent="."]
 

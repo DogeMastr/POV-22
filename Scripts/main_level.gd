@@ -10,6 +10,8 @@ extends Node3D
 @onready var score_label = $CanvasLayer/Score
 @onready var car_speed_label = $CanvasLayer/Car_Speed
 
+
+
 var pathway_obstacles
 var road_obstacles
 
