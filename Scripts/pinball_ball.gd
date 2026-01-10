@@ -19,7 +19,7 @@ func _on_body_entered(body: Node) -> void:
 		freeze = true
 		
 		# sinkhole can holy hold one ball
-		body.CollisionShape2D.disabled = true
+		body.get_node("CollisionShape2D").disabled = true
 		
 		# send a signal with the sinkhole
 		ballSunk.emit(body)
