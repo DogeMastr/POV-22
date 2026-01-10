@@ -46,7 +46,7 @@ func crossfade_music_to(track: AudioStream) -> void:
 	fade_music_in(track) # Fade in second player
 
 func track_finished():
-	Eventbus.track_ended.emit()
+	EventBus.track_ended.emit()
 
 func play_sfx(name: String):
 	$Sounds.get_node(name).play()
