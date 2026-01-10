@@ -16,10 +16,10 @@ func _on_body_entered(body: Node) -> void:
 	
 	if body.get_parent().name == "Sinkholes":
 		# keep the ball still
-		freeze = true
+		set_deferred("freeze", true)
 		
 		# sinkhole can holy hold one ball
-		body.get_node("CollisionShape2D").disabled = true
+		body.get_node("CollisionShape2D").set_deferred("disabled", true)
 		
 		# send a signal with the sinkhole
 		ballSunk.emit(body)
