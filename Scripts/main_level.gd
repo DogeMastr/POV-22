@@ -8,6 +8,7 @@ extends Node3D
 @onready var Bin = preload("res://Scenes/Obstacles/Bin.tscn")
 @onready var spawn_points = $Spawn_Points.get_children()
 @onready var score_label = $CanvasLayer/Score
+@onready var car_speed_label = $CanvasLayer/Car_Speed
 
 var pathway_obstacles
 var road_obstacles
@@ -19,6 +20,7 @@ var cooldown_max
 #Starting speed allows us to speed up objects over time
 @export var starting_speed = 5.0
 var speed_for_obstacle
+var car_acceleration = 1.0
 var score = 0
 
 # Pole logic / Swaps side of road once score % pole_check = 0
@@ -36,13 +38,12 @@ func _process(delta):
 	#Cooldown, score update, set speed
 	cooldown -= 1 * delta
 	score_label.score_to_display = int(round(score))
-	speed_for_obstacle = -starting_speed
+	speed_for_obstacle = -starting_speed * car_acceleration
 	score += -speed_for_obstacle/10
 	cooldown_max = clamp(cooldown_max - (score/10000 * delta), .6, cooldown_max)
 	
 	#Spawn of random obstacle
 	if cooldown < 0:
-		print(-speed_for_obstacle)
 		var lane = randi_range(0,3)
 		cooldown = cooldown_max
 		if lane == 0 or lane == 3:
@@ -55,16 +56,18 @@ func _process(delta):
 			var obstacle_instance = road_obstacles[object_selection].instantiate()
 			add_child(obstacle_instance)
 			obstacle_instance.global_position = spawn_points[lane].global_position
-			obstacle_instance.speed = speed_for_obstacle
+			obstacle_instance.speed = speed_for_obstacle	
 			
 			#if object is a Car
 			if object_selection == 0:
-				print("car")
 				if lane == 1:
 					obstacle_instance.speed *= .75
 				else:
 					obstacle_instance.speed *= 1.5
 		
+	if Input.is_action_pressed("move_forward"):
+		car_acceleration += .001
+		car_speed_label.score_to_display = int(round(car_acceleration))
 
 	#Pole logic
 	pole_check += 1 * delta * -speed_for_obstacle

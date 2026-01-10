@@ -146,4 +146,12 @@ mesh = SubResource("QuadMesh_nqwff")
 [node name="Score" type="Label" parent="CanvasLayer"]
 offset_right = 190.0
 offset_bottom = 91.0
+text = "0"
+script = ExtResource("2_y7i0d")
+
+[node name="Car_Speed" type="Label" parent="CanvasLayer"]
+offset_top = 18.0
+offset_right = 190.0
+offset_bottom = 109.0
+text = "0"
 script = ExtResource("2_y7i0d")
