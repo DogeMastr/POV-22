@@ -1,13 +1,13 @@
 extends RigidBody2D
 
-var bumperStrength = 200
+var bumperStrength = 2000
 signal ballSunk(sinkhole: Node)
 
 func _on_body_entered(body: Node) -> void:
 	#print(body.get_parent().name)
 	if body.get_parent().name == "Bumpers":
 #		# get angle of collision
-		var colVec = body.position - position
+		var colVec = (body.position - position).normalized()
 		#colVec.angle()
 		
 		# apply force in that angle
@@ -22,4 +22,4 @@ func _on_body_entered(body: Node) -> void:
 		body.CollisionShape2D.disabled = true
 		
 		# send a signal with the sinkhole
-		emit_signal("ballSunk", body)
+		ballSunk.emit(body)

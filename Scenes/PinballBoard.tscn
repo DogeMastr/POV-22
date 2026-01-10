@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://guv464dnju0t"]
+[gd_scene load_steps=15 format=3 uid="uid://guv464dnju0t"]
 
 [ext_resource type="PackedScene" uid="uid://cbjk8x8xblibm" path="res://Scenes/PinballBall.tscn" id="1_67n1w"]
 [ext_resource type="Script" uid="uid://bgqxbc1oqgv0v" path="res://Scripts/pinball_board.gd" id="1_iq81k"]
 [ext_resource type="PackedScene" uid="uid://dg03e4nawmf8y" path="res://Scenes/PinballSinkhole.tscn" id="3_8pyth"]
+[ext_resource type="Script" uid="uid://3yv3em723vf3" path="res://Scripts/pinball_spawner.gd" id="3_t8pbe"]
 
 [sub_resource type="Gradient" id="Gradient_1n6ji"]
 colors = PackedColorArray(0, 0.25490198, 0, 1, 0.25882354, 0, 0, 1)
@@ -17,6 +18,9 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0)
 }
 point_count = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t8pbe"]
+size = Vector2(18, 15)
 
 [sub_resource type="Gradient" id="Gradient_67n1w"]
 
@@ -53,8 +57,13 @@ FlipperRight = NodePath("FlipperRight")
 position = Vector2(120, 214)
 texture = SubResource("GradientTexture2D_67n1w")
 
-[node name="PinballBall" parent="." instance=ExtResource("1_67n1w")]
-position = Vector2(126, 128)
+[node name="PinballSpawner" type="Node2D" parent="."]
+script = ExtResource("3_t8pbe")
+pinball_packed = ExtResource("1_67n1w")
+launch_force = Vector2(-100, -50000)
+
+[node name="SpawnPos" type="Marker2D" parent="PinballSpawner"]
+position = Vector2(221, 363)
 
 [node name="Walls" type="Node2D" parent="."]
 
@@ -73,7 +82,7 @@ antialiased = true
 position = Vector2(202, 83)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Spawn Chamber"]
-polygon = PackedVector2Array(10, -36, 10, 0, 10, 350, 0, 350, 0, 0, 0, -52, 2, -51, 4, -49, 6, -47, 8, -44, 9, -41, 10, -38)
+polygon = PackedVector2Array(10, -36, 10, 0, 10, 350, 0, 350, 0, 0, 0, -44, 2, -44, 4, -44, 6, -43, 8, -41, 9, -39, 10, -37)
 
 [node name="Polygon2D" type="Polygon2D" parent="Walls/Spawn Chamber"]
 color = Color(0.88671374, 0.97912675, 0.76034045, 1)
@@ -87,7 +96,7 @@ position = Vector2(-12, -9)
 scale = Vector2(1.1, 1)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/top"]
-polygon = PackedVector2Array(0, 0, 239, 1, 240, 400, 220, 400, 220, 49, 219, 41, 217, 37, 215, 33, 212, 29, 208, 26, 202, 23, 195, 21, 188, 20, 52, 20, 40, 20, 37, 21, 32, 23, 28, 26, 25, 30, 23, 33, 21, 37, 20, 41, 20, 50, 20.000002, 215.75465, 20, 400, 0, 400)
+polygon = PackedVector2Array(0, 0, 239, 1, 240, 400, 220, 400, 220, 49, 219, 41, 217.27272, 37, 215, 33, 212, 29, 208, 26, 202, 23, 195, 21, 188, 20, 52, 20, 40, 20, 37, 21, 32, 23, 28, 26, 25, 30, 23, 33, 21, 37, 20, 41, 20, 50, 20.000002, 215.75465, 20, 400, 0, 400)
 
 [node name="Polygon2D" type="Polygon2D" parent="Walls/top"]
 color = Color(0.88671374, 0.97912675, 0.76034045, 1)
@@ -128,6 +137,13 @@ position = Vector2(249, 136)
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/middle3"]
 position = Vector2(-3, 13)
 polygon = PackedVector2Array(-78, 80, -71, 77, -66, 73, -63, 68, -61, 63, -60, 59, -60, 54, -60, -47, -61, -51, -62, -53, -65, -56, -68, -58, -71, -59, -75, -59, -79, -59, -82, -58, -86, -56, -88, -54, -90, -51, -91, -45, -91, -43, -91, -35, -91, -33, -91, -30, -92, -27, -93, -26, -95, -25, -98, -24, -100, -24, -103, -25, -105, -26, -106, -27, -107, -30, -107, -35, -107, -58, -110, -64, -113, -58, -113, -39, -113, -30, -113, -27, -112, -22, -110, -20, -107, -18, -105, -17, -100, -17, -94, -17, -91, -18, -88, -20, -86, -22, -85, -27, -85.00001, -31.627775, -85, -35, -85, -39, -85, -43, -84, -47, -83, -49, -82, -50, -80, -51, -77, -52, -75, -52, -73, -52, -70, -51, -70, -51, -69, -50, -68, -49, -67, -47, -67, -44, -67.00003, 40.046696, -67, 54, -67, 57, -68, 60, -69, 63, -71, 66, -74, 68, -78, 69)
+
+[node name="bottom" type="StaticBody2D" parent="Walls"]
+position = Vector2(211, 376)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/bottom"]
+position = Vector2(10, 7.5)
+shape = SubResource("RectangleShape2D_t8pbe")
 
 [node name="FlipperLeft" type="CharacterBody2D" parent="."]
 position = Vector2(52.000015, 308)
@@ -208,5 +224,3 @@ texture = SubResource("GradientTexture2D_8pyth")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bumpers/4"]
 shape = SubResource("CircleShape2D_t8pbe")
-
-[connection signal="ballSunk" from="PinballBall" to="." method="_on_pinball_ball_sunk"]
