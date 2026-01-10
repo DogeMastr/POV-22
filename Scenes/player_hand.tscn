@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://brcu0rywgugpg"]
+
+[ext_resource type="Script" uid="uid://bafu8kay1mdlx" path="res://Scripts/player_hand.gd" id="1_fvenh"]
+[ext_resource type="Texture2D" uid="uid://cagan71lkns6q" path="res://Assets/Textures/icon.svg" id="1_xhqds"]
+
+[node name="Player_hand" type="Node2D"]
+script = ExtResource("1_fvenh")
+
+[node name="Hand_Container" type="Node2D" parent="."]
+position = Vector2(1040, 542)
+
+[node name="Sprite2D" type="Sprite2D" parent="Hand_Container"]
+rotation = -0.39269912
+scale = Vector2(1.495, 2.065)
+texture = ExtResource("1_xhqds")
