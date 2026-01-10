@@ -1,12 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccws8tc6c0xxt"]
+[gd_scene load_steps=6 format=3 uid="uid://ccws8tc6c0xxt"]
 
 [ext_resource type="Script" uid="uid://dy88stv6m3l3a" path="res://Scripts/temp_obstacle_script.gd" id="1_vedh0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4n2wj"]
 size = Vector3(0.63238525, 0.59521484, 0.07281494)
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_nqwff"]
-size = Vector2(64, 64)
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_vedh0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hse8i"]
+albedo_texture = SubResource("PlaceholderTexture2D_vedh0")
+
+[sub_resource type="QuadMesh" id="QuadMesh_41jyf"]
+material = SubResource("StandardMaterial3D_hse8i")
 
 [node name="Person" type="Area3D"]
 collision_layer = 4
@@ -17,7 +22,7 @@ script = ExtResource("1_vedh0")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010406494, 0.026611328, -0.0030822754)
 shape = SubResource("BoxShape3D_4n2wj")
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
-texture = SubResource("PlaceholderTexture2D_nqwff")
+[node name="Sprite3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("QuadMesh_41jyf")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
