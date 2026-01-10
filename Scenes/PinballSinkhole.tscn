@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dg03e4nawmf8y"]
+
+[sub_resource type="Gradient" id="Gradient_lohyp"]
+colors = PackedColorArray(0, 1, 0, 1, 1, 0, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8i457"]
+gradient = SubResource("Gradient_lohyp")
+width = 15
+height = 15
+fill_to = Vector2(1, 1)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_lohyp"]
+a = Vector2(-1, 0)
+b = Vector2(13, 0)
+
+[node name="Sinkhole" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 6)
+texture = SubResource("GradientTexture2D_8i457")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-6, 0)
+shape = SubResource("SegmentShape2D_lohyp")
+disabled = true
