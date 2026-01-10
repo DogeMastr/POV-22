@@ -125,3 +125,10 @@ offset_right = 190.0
 offset_bottom = 109.0
 text = "0"
 script = ExtResource("2_y7i0d")
+
+[node name="Beer_Meter" type="Label" parent="CanvasLayer"]
+offset_top = 35.0
+offset_right = 190.0
+offset_bottom = 126.0
+text = "0"
+script = ExtResource("2_y7i0d")

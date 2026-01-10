@@ -6,10 +6,12 @@ extends Node3D
 @onready var Car = preload("res://Scenes/Obstacles/Car.tscn")
 @onready var Person = preload("res://Scenes/Obstacles/Person.tscn")
 @onready var Bin = preload("res://Scenes/Obstacles/Bin.tscn")
+
 @onready var spawn_points = $Spawn_Points.get_children()
+
 @onready var score_label = $CanvasLayer/Score
 @onready var car_speed_label = $CanvasLayer/Car_Speed
-
+@onready var beer_meter_label = $CanvasLayer/Beer_Meter
 
 
 var pathway_obstacles
@@ -30,6 +32,9 @@ var pole_on_left = true
 @export var pole_check = 7.5
 var pole_max
 
+var drinking = false
+var beer_multiplier = 1.0
+
 func _ready() -> void:
 	cooldown_max = cooldown
 	pole_max = pole_check
@@ -41,7 +46,7 @@ func _process(delta):
 	cooldown -= 1 * delta
 	score_label.score_to_display = int(round(score))
 	speed_for_obstacle = -starting_speed * car_acceleration
-	score += -speed_for_obstacle/10
+	score += (-speed_for_obstacle/10) * beer_multiplier 
 	cooldown_max = clamp(cooldown_max - (score/10000 * delta), .6, cooldown_max)
 	
 	#Spawn of random obstacle
@@ -70,6 +75,11 @@ func _process(delta):
 	if Input.is_action_pressed("move_forward"):
 		car_acceleration += .001
 		car_speed_label.score_to_display = int(round(car_acceleration))
+	
+	if Input.is_action_pressed("interact_key"):
+		beer_multiplier += .5 * delta
+		beer_meter_label.score_to_display = snapped(beer_multiplier, 0.01)
+		
 
 	#Pole logic
 	pole_check += 1 * delta * -speed_for_obstacle
