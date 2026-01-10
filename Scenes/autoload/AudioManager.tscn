@@ -5,7 +5,7 @@
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_ohynq")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer1" type="AudioStreamPlayer" parent="."]
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
 

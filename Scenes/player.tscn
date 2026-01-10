@@ -35,9 +35,17 @@ spot_range = 12.0
 spot_attenuation = 2.0
 spot_angle = 40.0
 
-[node name="Wheel_SFX" type="Node" parent="."]
+[node name="Wheel_SFX" type="Node3D" parent="."]
 
 [node name="Left_Wheel" type="AudioStreamPlayer3D" parent="Wheel_SFX"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2925037, -0.17871189, 0)
 stream = ExtResource("2_6t5aa")
-volume_db = -13.211
+volume_db = -30.0
+
+[node name="Right_Wheel" type="AudioStreamPlayer3D" parent="Wheel_SFX"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32791716, -0.17871189, 0)
+stream = ExtResource("2_6t5aa")
+volume_db = -30.0
+
+[connection signal="finished" from="Wheel_SFX/Left_Wheel" to="." method="_on_left_wheel_finished"]
+[connection signal="finished" from="Wheel_SFX/Right_Wheel" to="." method="_on_left_wheel_finished"]
