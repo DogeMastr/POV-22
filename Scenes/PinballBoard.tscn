@@ -118,7 +118,7 @@ texture = SubResource("PlaceholderTexture2D_67n1w")
 [node name="Bumpers" type="Node2D" parent="."]
 
 [node name="1" type="StaticBody2D" parent="Bumpers"]
-position = Vector2(89, 131)
+position = Vector2(56, 129)
 
 [node name="Sprite2D" type="Sprite2D" parent="Bumpers/1"]
 texture = SubResource("GradientTexture2D_8pyth")
@@ -127,7 +127,7 @@ texture = SubResource("GradientTexture2D_8pyth")
 shape = SubResource("CircleShape2D_t8pbe")
 
 [node name="2" type="StaticBody2D" parent="Bumpers"]
-position = Vector2(127, 163)
+position = Vector2(120, 128)
 
 [node name="Sprite2D" type="Sprite2D" parent="Bumpers/2"]
 texture = SubResource("GradientTexture2D_8pyth")
@@ -136,7 +136,7 @@ texture = SubResource("GradientTexture2D_8pyth")
 shape = SubResource("CircleShape2D_t8pbe")
 
 [node name="3" type="StaticBody2D" parent="Bumpers"]
-position = Vector2(151, 114)
+position = Vector2(183, 128)
 
 [node name="Sprite2D" type="Sprite2D" parent="Bumpers/3"]
 texture = SubResource("GradientTexture2D_8pyth")
@@ -145,7 +145,7 @@ texture = SubResource("GradientTexture2D_8pyth")
 shape = SubResource("CircleShape2D_t8pbe")
 
 [node name="PinballBall" parent="." instance=ExtResource("1_67n1w")]
-position = Vector2(78, 92)
+position = Vector2(115, 67)
 
 [node name="FlipperLeft" type="CharacterBody2D" parent="."]
 position = Vector2(67, 354)

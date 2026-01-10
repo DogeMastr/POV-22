@@ -1,11 +1,32 @@
-[gd_scene load_steps=8 format=3 uid="uid://cnoe42obwtl5b"]
+[gd_scene load_steps=13 format=3 uid="uid://cnoe42obwtl5b"]
 
 [ext_resource type="Script" uid="uid://b1kj8237jrpvq" path="res://Scripts/main_level.gd" id="1_hyj3q"]
 [ext_resource type="Script" uid="uid://gbju3gf3x0ld" path="res://Scripts/player.gd" id="2_7g051"]
 [ext_resource type="Script" uid="uid://037us86n1wnp" path="res://Scripts/temp_score.gd" id="2_y7i0d"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7g051"]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0.19414508, 0.18639508, 0.17739508, 1)
+ground_horizon_color = Color(0.19414508, 0.18639508, 0.17739508, 1)
+
+[sub_resource type="Sky" id="Sky_4n2wj"]
+sky_material = SubResource("ProceduralSkyMaterial_7g051")
+
+[sub_resource type="Environment" id="Environment_nqwff"]
+background_mode = 2
+background_energy_multiplier = 0.2
+sky = SubResource("Sky_4n2wj")
+tonemap_mode = 2
+fog_enabled = true
+fog_light_color = Color(9.535274e-05, 0.00011561906, 0.00015177995, 1)
+fog_light_energy = 0.0
+fog_density = 0.25
+volumetric_fog_density = 0.199
+volumetric_fog_emission_energy = 0.0
+volumetric_fog_detail_spread = 1.9792628
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_4n2wj"]
-size = Vector3(1, 0.67962646, 0.4116211)
+size = Vector3(0.79919434, 0.58187866, 0.4116211)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_cwhc2"]
 size = Vector2(5.88, 8)
@@ -16,47 +37,109 @@ size = Vector2(2.44, 8)
 [sub_resource type="PlaneMesh" id="PlaneMesh_7g051"]
 size = Vector2(2.44, 8)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g5c6q"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_nqwff"]
+material = SubResource("StandardMaterial3D_g5c6q")
+size = Vector2(34.42, 28.405)
+
 [node name="MainLevel" type="Node3D"]
 script = ExtResource("1_hyj3q")
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_nqwff")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+light_color = Color(0, 0, 0, 1)
+shadow_enabled = true
+
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13868338, 0)
+collision_layer = 2
+collision_mask = 5
 axis_lock_linear_y = true
 axis_lock_linear_z = true
 motion_mode = 1
 script = ExtResource("2_7g051")
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 0.9802574, 0.19772577, 0, -0.19772577, 0.9802574, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0038146973, -0.41674805)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0138549805, -0.045059204, -0.41674805)
 shape = SubResource("BoxShape3D_4n2wj")
 
-[node name="Street" type="MeshInstance3D" parent="."]
+[node name="Headlight_L" type="SpotLight3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 0.9961947, 0.08715574, 0, -0.08715574, 0.9961947, -0.34715313, 0, 0)
+light_color = Color(1, 0.8156863, 0.3764706, 1)
+spot_range = 12.0
+spot_attenuation = 2.0
+spot_angle = 40.0
+
+[node name="Headlight_R" type="SpotLight3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 0.9962706, 0.08628641, 0, -0.08628641, 0.9962706, 0.38771367, 0, 0)
+light_color = Color(1, 0.8156863, 0.3764706, 1)
+spot_range = 12.0
+spot_attenuation = 2.0
+spot_angle = 40.0
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="Street" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.34927496, -4.4455905)
 mesh = SubResource("PlaneMesh_cwhc2")
+skeleton = NodePath("../..")
 
-[node name="L_Wall" type="MeshInstance3D" parent="."]
+[node name="L_Wall" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -2.8878536, 0.82300186, -4.4455905)
 mesh = SubResource("PlaneMesh_y7i0d")
+skeleton = NodePath("../..")
 
-[node name="R_Wall" type="MeshInstance3D" parent="."]
+[node name="R_Wall" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 2.8837662, 0.83035934, -4.4455905)
 mesh = SubResource("PlaneMesh_7g051")
+skeleton = NodePath("../..")
+
+[node name="Street2" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.34927496, -12.445671)
+mesh = SubResource("PlaneMesh_cwhc2")
+skeleton = NodePath("../..")
+
+[node name="L_Wall2" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -2.8878536, 0.82300186, -12.445671)
+mesh = SubResource("PlaneMesh_y7i0d")
+skeleton = NodePath("../..")
+
+[node name="R_Wall2" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 2.8837662, 0.83035934, -12.445671)
+mesh = SubResource("PlaneMesh_7g051")
+skeleton = NodePath("../..")
 
 [node name="Spawn_Points" type="Node" parent="."]
 
 [node name="Spawn_Point_1" type="Node3D" parent="Spawn_Points"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -8.4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -16.650154)
 
 [node name="Spawn_Point_2" type="Node3D" parent="Spawn_Points"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -8.4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0, -16.650154)
 
 [node name="Spawn_Point_3" type="Node3D" parent="Spawn_Points"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -8.4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, -16.650154)
 
 [node name="Spawn_Point_4" type="Node3D" parent="Spawn_Points"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -8.4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -16.650154)
+
+[node name="Spawn_Point_Pole_L" type="Node3D" parent="Spawn_Points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -16.650154)
+
+[node name="Spawn_Point_Pole_R" type="Node3D" parent="Spawn_Points"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -16.650154)
+
+[node name="Fog" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.42389762, -6.3157864)
+visible = false
+mesh = SubResource("QuadMesh_nqwff")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

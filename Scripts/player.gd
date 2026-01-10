@@ -21,7 +21,7 @@ func _process(delta: float) -> void:
 	
 	position.x = clampf(position.x, -(size_of_street/2 - collision.shape.size.x), size_of_street/2 - collision.shape.size.x)
 	
-	if (position.x <= -(size_of_street/2 - collision.shape.size.x) and hori_input != 1) or (position.x >= size_of_street/2 - collision.shape.size.x and hori_input != -1):
+	if (position.x <= -(size_of_street/2 - collision.shape.size.x) and velocity.x <= 0) or (position.x >= size_of_street/2 - collision.shape.size.x and velocity.x >= 0):
 		velocity.x = -velocity.x *.5
 	
 	cam.transform.basis = Basis()

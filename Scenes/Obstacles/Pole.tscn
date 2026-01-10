@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cko10g0f1tdy2"]
+[gd_scene load_steps=4 format=3 uid="uid://ctwt3ob2g2iff"]
 
-[ext_resource type="Script" uid="uid://dy88stv6m3l3a" path="res://Scripts/temp_obstacle_script.gd" id="1_rugpe"]
+[ext_resource type="Script" uid="uid://dy88stv6m3l3a" path="res://Scripts/temp_obstacle_script.gd" id="1_y0cfx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4n2wj"]
 size = Vector3(0.63238525, 0.59521484, 0.07281494)
@@ -8,16 +8,25 @@ size = Vector3(0.63238525, 0.59521484, 0.07281494)
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_nqwff"]
 size = Vector2(64, 64)
 
-[node name="temp_obstacle" type="Area3D"]
+[node name="Pole" type="Area3D"]
 collision_layer = 4
 collision_mask = 2
-script = ExtResource("1_rugpe")
+script = ExtResource("1_y0cfx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010406494, 0.026611328, -0.0030822754)
 shape = SubResource("BoxShape3D_4n2wj")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
+billboard = 1
 texture = SubResource("PlaceholderTexture2D_nqwff")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 2.2522287, 0)
+light_color = Color(1, 0.8156863, 0.3764706, 1)
+light_energy = 25.0
+spot_range = 10.0
+spot_attenuation = 2.0
+spot_angle = 16.075531
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
