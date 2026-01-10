@@ -1,15 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://brcu0rywgugpg"]
+[gd_scene load_steps=4 format=3 uid="uid://brcu0rywgugpg"]
 
 [ext_resource type="Script" uid="uid://bafu8kay1mdlx" path="res://Scripts/player_hand.gd" id="1_fvenh"]
-[ext_resource type="Texture2D" uid="uid://cagan71lkns6q" path="res://Assets/Textures/icon.svg" id="1_xhqds"]
+[ext_resource type="PackedScene" uid="uid://guv464dnju0t" path="res://Scenes/PinballBoard.tscn" id="2_fvenh"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_f2w7u"]
+viewport_path = NodePath("Hand_Container/SubViewport")
 
 [node name="Player_hand" type="Node2D"]
 script = ExtResource("1_fvenh")
 
 [node name="Hand_Container" type="Node2D" parent="."]
-position = Vector2(1040, 542)
+position = Vector2(1018.99994, 473.00006)
+rotation = -0.36651915
 
 [node name="Sprite2D" type="Sprite2D" parent="Hand_Container"]
-rotation = -0.39269912
-scale = Vector2(1.495, 2.065)
-texture = ExtResource("1_xhqds")
+texture = SubResource("ViewportTexture_f2w7u")
+
+[node name="SubViewport" type="SubViewport" parent="Hand_Container"]
+size = Vector2i(227, 412)
+
+[node name="PinballBoard" parent="Hand_Container/SubViewport" instance=ExtResource("2_fvenh")]
