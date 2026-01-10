@@ -16,12 +16,15 @@ var left_wheel_playing = false
 var right_wheel_playing = false
 var default_wheel_db
 
+var is_dead = 1
+
 func _ready() -> void:
 	print(size_of_street/2 - collision.shape.size.x)
 	default_wheel_db = left_wheel.volume_db
+	EventBus.is_dead.connect(die)
 
 func _process(delta: float) -> void:
-	var hori_input = Input.get_axis("move_left","move_right")
+	var hori_input = Input.get_axis("move_left","move_right") * is_dead
 	if hori_input != 0:
 		velocity.x += speed * hori_input * delta
 		
@@ -52,6 +55,7 @@ func _process(delta: float) -> void:
 	
 	if (position.x <= -(size_of_street/2 - collision.shape.size.x) and velocity.x <= 0) or (position.x >= size_of_street/2 - collision.shape.size.x and velocity.x >= 0):
 		velocity.x = -velocity.x *.5
+		AudioManager.play_sfx("Hit_Wall")
 	
 	cam.transform.basis = Basis()
 	cam.rotate_object_local(Vector3.FORWARD, clampf(velocity.x/50, deg_to_rad(-10), deg_to_rad(10)))
@@ -60,3 +64,10 @@ func _process(delta: float) -> void:
 
 func _on_left_wheel_finished() -> void:
 	left_wheel_playing = false
+	
+func _on_right_wheel_finished() -> void:
+	right_wheel_playing = false
+	
+func die():
+	is_dead = 0
+	set_collision_layer_value(2, false)

@@ -11,3 +11,4 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	AudioManager.play_sfx("Crash")
+	EventBus.is_dead.emit()

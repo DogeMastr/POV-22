@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cshv7o0dipn1g"]
+[gd_scene load_steps=4 format=3 uid="uid://cshv7o0dipn1g"]
 
 [ext_resource type="Script" uid="uid://b2ri5dfe8g6bx" path="res://Scripts/autoload/audio_manager.gd" id="1_ohynq"]
 [ext_resource type="AudioStream" uid="uid://dluntlbn7h7sp" path="res://Assets/sounds/crash.wav" id="2_p11ls"]
+[ext_resource type="AudioStream" uid="uid://duh4vhdhwn4pr" path="res://Assets/sounds/carhityou.wav" id="3_uwna8"]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_ohynq")
@@ -14,3 +15,8 @@ script = ExtResource("1_ohynq")
 
 [node name="Crash" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("2_p11ls")
+volume_db = -10.0
+
+[node name="Hit_Wall" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("3_uwna8")
+volume_db = -20.0

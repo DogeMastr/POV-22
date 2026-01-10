@@ -32,22 +32,28 @@ var pole_on_left = true
 @export var pole_check = 7.5
 var pole_max
 
+# Drinking variables
 var drinking = false
 var beer_multiplier = 1.0
+
+#Is dead
+var player_dead = false
 
 func _ready() -> void:
 	cooldown_max = cooldown
 	pole_max = pole_check
 	pathway_obstacles = [Person, Bin]
 	road_obstacles = [Car, Person, Bin] 
+	EventBus.is_dead.connect(on_dying)
 
 func _process(delta):
 	#Cooldown, score update, set speed
 	cooldown -= 1 * delta
 	score_label.score_to_display = int(round(score))
 	speed_for_obstacle = -starting_speed * car_acceleration
-	score += (-speed_for_obstacle/10) * beer_multiplier 
 	cooldown_max = clamp(cooldown_max - (score/10000 * delta), .6, cooldown_max)
+	if not player_dead:
+		score += (-speed_for_obstacle/10) * beer_multiplier 
 	
 	#Spawn of random obstacle
 	if cooldown < 0:
@@ -72,11 +78,11 @@ func _process(delta):
 				else:
 					obstacle_instance.speed *= 1.5
 		
-	if Input.is_action_pressed("move_forward"):
+	if Input.is_action_pressed("move_forward") and not player_dead:
 		car_acceleration += .001
 		car_speed_label.score_to_display = int(round(car_acceleration))
 	
-	if Input.is_action_pressed("interact_key"):
+	if Input.is_action_pressed("interact_key") and not player_dead:
 		beer_multiplier += .5 * delta
 		beer_meter_label.score_to_display = snapped(beer_multiplier, 0.01)
 		
@@ -101,3 +107,6 @@ func _process(delta):
 			obstacle_instance.rotate_object_local(Vector3.UP, PI)
 			pole_on_left = not pole_on_left
 		pole_check = 0
+
+func on_dying():
+	player_dead = true

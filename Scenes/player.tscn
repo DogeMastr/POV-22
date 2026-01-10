@@ -48,4 +48,4 @@ stream = ExtResource("2_6t5aa")
 volume_db = -30.0
 
 [connection signal="finished" from="Wheel_SFX/Left_Wheel" to="." method="_on_left_wheel_finished"]
-[connection signal="finished" from="Wheel_SFX/Right_Wheel" to="." method="_on_left_wheel_finished"]
+[connection signal="finished" from="Wheel_SFX/Right_Wheel" to="." method="_on_right_wheel_finished"]
