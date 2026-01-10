@@ -85,5 +85,7 @@ func _process(delta):
 			add_child(obstacle_instance)
 			obstacle_instance.global_position = spawn_points[5].global_position
 			obstacle_instance.speed = speed_for_obstacle
+			obstacle_instance.transform.basis = Basis()
+			obstacle_instance.rotate_object_local(Vector3.UP, PI)
 			pole_on_left = not pole_on_left
 		pole_check = 0
