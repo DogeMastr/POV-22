@@ -5,10 +5,10 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ffwce"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ffwce"]
-size = Vector2(25, 25)
+size = Vector2(15, 15)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_snkf7"]
-radius = 12.5
+radius = 7.5
 
 [node name="PinballBall" type="RigidBody2D"]
 mass = 0.2
