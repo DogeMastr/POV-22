@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cbjk8x8xblibm" path="res://Scenes/PinballBall.tscn" id="1_67n1w"]
 [ext_resource type="Script" uid="uid://bgqxbc1oqgv0v" path="res://Scripts/pinball_board.gd" id="1_iq81k"]
 [ext_resource type="Texture2D" uid="uid://dlriwqsv5nmc5" path="res://Assets/Textures/pinball_background.png" id="2_winpa"]
-[ext_resource type="PackedScene" path="res://Scenes/PinballSinkhole.tscn" id="3_8pyth"]
+[ext_resource type="PackedScene" uid="uid://dg03e4nawmf8y" path="res://Scenes/PinballSinkhole.tscn" id="3_8pyth"]
 [ext_resource type="Script" uid="uid://3yv3em723vf3" path="res://Scripts/pinball_spawner.gd" id="3_t8pbe"]
 [ext_resource type="Texture2D" uid="uid://10f7xuleo46k" path="res://Assets/Textures/pinball_flipper.png" id="5_jppec"]
 [ext_resource type="Texture2D" uid="uid://bcx4ljynqt4c7" path="res://Assets/Textures/pinball_bumper.png" id="7_jppec"]
@@ -60,7 +60,7 @@ position = Vector2(202, 83)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Spawn Chamber"]
 position = Vector2(-3, 1)
-polygon = PackedVector2Array(7, -34, 7, 0, 7, 350, 0, 350, 0, 0, 0, -44, 2, -44, 4, -44, 6, -43, 7, -42, 7, -39, 7, -37)
+polygon = PackedVector2Array(7, -34, 7, 0, 7, 350, 0, 350, 0, 0, 0, -43, 1, -44, 4, -43, 6, -42, 7, -41, 7, -39, 7, -37)
 
 [node name="Polygon2D" type="Polygon2D" parent="Walls/Spawn Chamber"]
 color = Color(0.88671374, 0.97912675, 0.76034045, 1)
@@ -86,7 +86,7 @@ position = Vector2(39, 65)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/left lane"]
 position = Vector2(-5, -14)
-polygon = PackedVector2Array(2, -25, -1, -23, -3, -21, -5, -19, -7, -16, -8, -12, -8, -6, -8, 89, -8, 137, -8, 146, -8, 161, -7, 166, -5, 169, -2, 172, 0, 174, 9, 174, 11, 172, 11, 168, 9, 165, 5, 165, 1, 161, 1, 140, 1, 133, 1, 89, 1, 80, 1, 16, 1, -4, 1, -8, 2, -12, 4, -15, 9, -16, 11, -18, 11, -22, 8, -24)
+polygon = PackedVector2Array(2, -25, -1, -23, -3, -21, -5, -19, -7, -16, -8, -12, -8, -6, -8, 89, -8, 137, -8, 146, -8, 161, -7, 166, -5, 169, -2, 172, 0, 174, 9, 174, 11, 172, 11, 168, 9, 166, 5, 165, 1, 161, 1, 140, 1, 133, 1, 89, 1, 80, 1, 16, 1, -4, 1, -8, 2, -12, 4, -15, 9, -16, 11, -18, 11, -22, 8, -24)
 
 [node name="Polygon2D" type="Polygon2D" parent="Walls/left lane"]
 color = Color(0.88671374, 0.97912675, 0.76034045, 1)
@@ -125,30 +125,30 @@ position = Vector2(5, 7)
 shape = SubResource("RectangleShape2D_t8pbe")
 
 [node name="FlipperLeft" type="CharacterBody2D" parent="."]
-position = Vector2(54, 312)
-rotation = 0.7853982
+position = Vector2(59.000008, 319)
+rotation = 0.36651915
 
 [node name="Sprite2D" type="Sprite2D" parent="FlipperLeft"]
-position = Vector2(25.45583, 4.242649)
+position = Vector2(12.020812, 2.1213179)
 rotation = 3.1415927
 scale = Vector2(1, -1)
 texture = ExtResource("5_jppec")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FlipperLeft"]
-position = Vector2(24.04161, 5.6568575)
+position = Vector2(12.020807, 3.5355258)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_8pyth")
 
 [node name="FlipperRight" type="CharacterBody2D" parent="."]
-position = Vector2(153.00008, 313)
-rotation = -0.7853982
+position = Vector2(147.99997, 319.00006)
+rotation = -0.36651915
 
 [node name="Sprite2D" type="Sprite2D" parent="FlipperRight"]
-position = Vector2(-24.748747, 3.5355427)
+position = Vector2(-12.020835, 2.121318)
 texture = ExtResource("5_jppec")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FlipperRight"]
-position = Vector2(-24.748747, 7.7781835)
+position = Vector2(-12.020834, 3.5355315)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_8pyth")
 

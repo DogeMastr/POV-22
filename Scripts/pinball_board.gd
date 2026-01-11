@@ -3,7 +3,7 @@ extends Node2D
 @export var FlipperLeft  := CharacterBody2D
 @export var FlipperRight  := CharacterBody2D
 
-@export var restAngle = 45
+@export var restAngle = 21
 
 var flipStrength = .13
 var flipFalloff = .005
@@ -14,6 +14,7 @@ var fRightVel = 0
 
 func _ready() -> void:
 	restAngle = deg_to_rad(restAngle)
+	EventBus.is_dead = false
 	
 func _process(_delta: float):
 	# LEFT FLIPPER CONTROLS
