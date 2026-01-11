@@ -19,7 +19,7 @@ size = Vector2(18, 15)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8pyth"]
 radius = 12.65
-height = 46.26703
+height = 62.61609
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t8pbe"]
 radius = 8.0
@@ -33,6 +33,16 @@ FlipperRight = NodePath("FlipperRight")
 position = Vector2(116, 183)
 scale = Vector2(0.855, 0.855)
 texture = ExtResource("2_winpa")
+
+[node name="Sinkholes" type="Node2D" parent="."]
+position = Vector2(171, 102)
+
+[node name="2" parent="Sinkholes" instance=ExtResource("3_8pyth")]
+position = Vector2(-40, 2)
+rotation = 3.1393352
+
+[node name="1" parent="Sinkholes" instance=ExtResource("3_8pyth")]
+position = Vector2(-10, -14)
 
 [node name="PinballSpawner" type="Node2D" parent="."]
 script = ExtResource("3_t8pbe")
@@ -135,7 +145,7 @@ scale = Vector2(1, -1)
 texture = ExtResource("5_jppec")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FlipperLeft"]
-position = Vector2(12.020807, 3.5355258)
+position = Vector2(6.959632, 6.9687395)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_8pyth")
 
@@ -148,24 +158,14 @@ position = Vector2(-12.020835, 2.121318)
 texture = ExtResource("5_jppec")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FlipperRight"]
-position = Vector2(-12.020834, 3.5355315)
+position = Vector2(-6.95958, 6.968711)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_8pyth")
-
-[node name="Sinkholes" type="Node2D" parent="."]
-position = Vector2(171, 102)
-
-[node name="2" parent="Sinkholes" instance=ExtResource("3_8pyth")]
-position = Vector2(-40, 2)
-rotation = 3.1393352
-
-[node name="1" parent="Sinkholes" instance=ExtResource("3_8pyth")]
-position = Vector2(-10, -14)
 
 [node name="Bumpers" type="Node2D" parent="."]
 
 [node name="1" type="StaticBody2D" parent="Bumpers"]
-position = Vector2(100, 88)
+position = Vector2(91.99999, 92)
 scale = Vector2(0.7, 0.7)
 
 [node name="Sprite2D" type="Sprite2D" parent="Bumpers/1"]
@@ -203,4 +203,24 @@ scale = Vector2(0.7, 0.7)
 texture = ExtResource("7_jppec")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bumpers/4"]
+shape = SubResource("CircleShape2D_t8pbe")
+
+[node name="5" type="StaticBody2D" parent="Bumpers"]
+position = Vector2(97, 61)
+scale = Vector2(0.7, 0.7)
+
+[node name="Sprite2D" type="Sprite2D" parent="Bumpers/5"]
+texture = ExtResource("7_jppec")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bumpers/5"]
+shape = SubResource("CircleShape2D_t8pbe")
+
+[node name="6" type="StaticBody2D" parent="Bumpers"]
+position = Vector2(57, 41)
+scale = Vector2(0.7, 0.7)
+
+[node name="Sprite2D" type="Sprite2D" parent="Bumpers/6"]
+texture = ExtResource("7_jppec")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bumpers/6"]
 shape = SubResource("CircleShape2D_t8pbe")

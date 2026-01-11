@@ -14,7 +14,7 @@ var fRightVel = 0
 
 func _ready() -> void:
 	restAngle = deg_to_rad(restAngle)
-
+	EventBus.is_dead = false
 	
 func _process(_delta: float):
 	# LEFT FLIPPER CONTROLS
@@ -37,9 +37,26 @@ func _process(_delta: float):
 		fRightVel = 0
 		FlipperRight.rotation = -restAngle
 
-
+var sunk_sinkholes = []
+@export var release_force := Vector2(-1000.0, -1000.0)
 func _on_pinball_ball_sunk(sinkhole: Node) -> void:
-	# ball has just been sunk
-	# if sinkhole 2 is sunk then start a random microgame?
+	print(sinkhole.name)
+	# ball has just been sunk, start an interuption
+	interupt()
+	
 	# if all sinkholes are sunk then release all balls, then re-enable the sinkhole colliders
+	sunk_sinkholes.push_front(sinkhole);
+	if $Sinkholes.get_children().size() == sunk_sinkholes.size(): # if 2 == 2
+		# all sunk
+		sunk_sinkholes = []
+		for ball in $PinballSpawner.get_pinballs():
+			ball.freeze = false
+			ball.apply_force()
+	else:
+		# spawn pinball
+		$PinballSpawner.spawn_uninit()
 	pass # Replace with function body.
+
+func interupt():
+	var random = randi_range(1,15) # idk how many phone calls or ads we have but its one of them?
+	pass

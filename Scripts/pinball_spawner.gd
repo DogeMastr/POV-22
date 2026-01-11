@@ -12,10 +12,14 @@ func _ready() -> void:
 func get_pinballs() -> Array[Node]:
 	return get_tree().get_nodes_in_group("ballz")
 
-
+func forward_ballsunk_signal(sinkhole: Node):
+	get_parent()._on_pinball_ball_sunk(sinkhole);
+	pass
+	
 func spawn_uninit():
 	var inst := pinball_packed.instantiate()
 	inst.position = $SpawnPos.position	
+	inst.connect("ballSunk", forward_ballsunk_signal.bind())
 	to_launch.push_back(inst)
 	add_child(inst)
 

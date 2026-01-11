@@ -15,11 +15,12 @@ func _on_body_entered(body: Node) -> void:
 		apply_force(bumperForce)
 	
 	if body.get_parent().name == "Sinkholes":
-		# keep the ball still
-		set_deferred("freeze", true)
+		print("HIIHAHISFIHAHIFGSG")
+		# send a signal with the sinkhole
+		ballSunk.emit(body)
 		
 		# sinkhole can holy hold one ball
 		body.get_node("CollisionShape2D").set_deferred("disabled", true)
 		
-		# send a signal with the sinkhole
-		ballSunk.emit(body)
+		# keep the ball still
+		set_deferred("freeze", true)
