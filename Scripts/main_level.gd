@@ -1,5 +1,8 @@
 extends Node3D
 
+# Music
+@onready var menu_theme = preload("res://Assets/Music/Influence is nuanced.wav")
+
 # Gameobjects
 @onready var temp_obstacle = preload("res://Scenes/Obstacles/temp_obstacle.tscn")
 @onready var Pole = preload("res://Scenes/Obstacles/Pole.tscn")
@@ -9,6 +12,7 @@ extends Node3D
 
 @onready var spawn_points = $Spawn_Points.get_children()
 
+# UI
 @onready var score_label = $CanvasLayer/Score
 @onready var car_speed_label = $CanvasLayer/Car_Speed
 @onready var beer_meter_label = $CanvasLayer/Beer_Meter
@@ -46,6 +50,10 @@ func _ready() -> void:
 	road_obstacles = [Car, Person, Bin] 
 	
 	EventBus.game_start.connect(start)
+	
+	AudioManager.fade_music_in(menu_theme)
+	
+	%BlackOut/AnimationPlayer.play("Blackout_fade_out")
 
 func _process(delta):
 	#Cooldown, score update, set speed
