@@ -16,12 +16,13 @@ var left_wheel_playing = false
 var right_wheel_playing = false
 var default_wheel_db
 
-var is_dead = 1
+var is_dead = 0
 
 func _ready() -> void:
 	print(size_of_street/2 - collision.shape.size.x)
 	default_wheel_db = left_wheel.volume_db
 	EventBus.is_dead.connect(die)
+	EventBus.game_start.connect(start)
 
 func _process(delta: float) -> void:
 	var hori_input = Input.get_axis("move_left","move_right") * is_dead
@@ -71,3 +72,6 @@ func _on_right_wheel_finished() -> void:
 func die():
 	is_dead = 0
 	set_collision_layer_value(2, false)
+	
+func start():
+	is_dead = 1

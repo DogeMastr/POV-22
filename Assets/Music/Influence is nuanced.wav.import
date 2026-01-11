@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://3qbagubco730"
+path="res://.godot/imported/Influence is nuanced.wav-0f9edff8437209ff5a5d132a41b1cb77.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Influence is nuanced.wav"
+dest_files=["res://.godot/imported/Influence is nuanced.wav-0f9edff8437209ff5a5d132a41b1cb77.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -37,18 +37,21 @@ var drinking = false
 var beer_multiplier = 1.0
 
 #Is dead
-var player_dead = false
+var player_dead = true
+var game_start = 0
 
 func _ready() -> void:
 	cooldown_max = cooldown
 	pole_max = pole_check
 	pathway_obstacles = [Person, Bin]
 	road_obstacles = [Car, Person, Bin] 
+	
 	EventBus.is_dead.connect(on_dying)
+	EventBus.game_start.connect(start)
 
 func _process(delta):
 	#Cooldown, score update, set speed
-	cooldown -= 1 * delta
+	cooldown -= 1 * delta * game_start
 	score_label.score_to_display = int(round(score))
 	speed_for_obstacle = -starting_speed * car_acceleration
 	cooldown_max = clamp(cooldown_max - (score/10000 * delta), .6, cooldown_max)
@@ -110,3 +113,7 @@ func _process(delta):
 
 func on_dying():
 	player_dead = true
+
+func start():
+	player_dead = false
+	game_start = 1
