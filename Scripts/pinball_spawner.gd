@@ -5,7 +5,6 @@ extends Node2D
 
 var to_launch = []
 
-
 func _ready() -> void:
 	spawn_uninit()
 	
@@ -22,7 +21,7 @@ func spawn_uninit():
 
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("PinballLaunch") and to_launch != null:
+	if Input.is_action_just_pressed("PinballLaunch") and to_launch != null and not EventBus.is_dead:
 		for item in to_launch:
 			item.apply_force(launch_force)
 		to_launch = []

@@ -1,7 +1,9 @@
 extends Node
 
+var is_dead = true
+
 signal track_ended
 
-signal is_dead
+signal has_died
 
 signal game_start

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cbjk8x8xblibm" path="res://Scenes/PinballBall.tscn" id="1_67n1w"]
 [ext_resource type="Script" uid="uid://bgqxbc1oqgv0v" path="res://Scripts/pinball_board.gd" id="1_iq81k"]
 [ext_resource type="Texture2D" uid="uid://dlriwqsv5nmc5" path="res://Assets/Textures/pinball_background.png" id="2_winpa"]
-[ext_resource type="PackedScene" uid="uid://dg03e4nawmf8y" path="res://Scenes/PinballSinkhole.tscn" id="3_8pyth"]
+[ext_resource type="PackedScene" path="res://Scenes/PinballSinkhole.tscn" id="3_8pyth"]
 [ext_resource type="Script" uid="uid://3yv3em723vf3" path="res://Scripts/pinball_spawner.gd" id="3_t8pbe"]
 [ext_resource type="Texture2D" uid="uid://10f7xuleo46k" path="res://Assets/Textures/pinball_flipper.png" id="5_jppec"]
 [ext_resource type="Texture2D" uid="uid://bcx4ljynqt4c7" path="res://Assets/Textures/pinball_bumper.png" id="7_jppec"]
