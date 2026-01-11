@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var pinball_packed: PackedScene
-@export var launch_force := Vector2(-100.0, -5000.0)
+@export var launch_force := Vector2(-10.0, -10.0)
 
 var to_launch = []
 
