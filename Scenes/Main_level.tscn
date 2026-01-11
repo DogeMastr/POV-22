@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://cnoe42obwtl5b"]
 
 [ext_resource type="Script" uid="uid://b1kj8237jrpvq" path="res://Scripts/main_level.gd" id="1_hyj3q"]
-[ext_resource type="PackedScene" uid="uid://6mf08mbydxlr" path="res://Scenes/player.tscn" id="2_7g051"]
+[ext_resource type="PackedScene" path="res://Scenes/player.tscn" id="2_7g051"]
 [ext_resource type="Script" uid="uid://037us86n1wnp" path="res://Scripts/temp_score.gd" id="2_y7i0d"]
 [ext_resource type="Texture2D" uid="uid://dphe2lpro8ltx" path="res://Assets/Textures/ground placeholder street.png" id="3_4n2wj"]
 [ext_resource type="Shader" uid="uid://3x46yw0ykb2c" path="res://Scripts/shader/Main_level.gdshader" id="3_nqwff"]

@@ -16,12 +16,12 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	var mouse_pos = get_viewport().get_mouse_position()
-	if mouse_pos.x >= screen_size.x * .45 and not is_dead:
-		container.global_position = container.global_position.slerp(mouse_pos, lerp_strength * delta)
-	else:
-		container.global_position = container.global_position.slerp(set_position, lerp_strength * delta)
-	
-	container.global_position.y = clampf(container.global_position.y, screen_size.y/2, screen_size.y)
+	#if mouse_pos.x >= screen_size.x * .45 and not is_dead:
+	container.global_position = container.global_position.slerp(mouse_pos + screen_size/4,lerp_strength * delta)
+	#else:
+		#container.global_position = container.global_position.slerp(set_position, lerp_strength * delta)
+	#
+	#container.global_position.y = clampf(container.global_position.y, screen_size.y/2, screen_size.y)
 
 func on_death():
 	is_dead = true

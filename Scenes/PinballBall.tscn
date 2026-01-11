@@ -1,11 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://cbjk8x8xblibm"]
 
 [ext_resource type="Script" uid="uid://douctv8ukks6r" path="res://Scripts/pinball_ball.gd" id="1_snkf7"]
+[ext_resource type="Texture2D" uid="uid://bo784lqn7fqj4" path="res://Assets/Textures/pinball_ball.png" id="2_jt0tv"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ffwce"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ffwce"]
-size = Vector2(15, 15)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_snkf7"]
 radius = 7.5
@@ -19,7 +17,7 @@ max_contacts_reported = 50
 script = ExtResource("1_snkf7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("PlaceholderTexture2D_ffwce")
+texture = ExtResource("2_jt0tv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_snkf7")
