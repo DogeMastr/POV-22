@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://brcu0rywgugpg"]
+[gd_scene load_steps=7 format=3 uid="uid://brcu0rywgugpg"]
 
 [ext_resource type="Script" uid="uid://bafu8kay1mdlx" path="res://Scripts/player_hand.gd" id="1_fvenh"]
 [ext_resource type="PackedScene" uid="uid://guv464dnju0t" path="res://Scenes/PinballBoard.tscn" id="2_fvenh"]
+[ext_resource type="Texture2D" uid="uid://ykgpxr7uamhg" path="res://Assets/Textures/phone arm.png" id="2_scj7t"]
+[ext_resource type="Texture2D" uid="uid://cakbb736a8oyx" path="res://Assets/Textures/phone.png" id="3_otxqc"]
+[ext_resource type="Texture2D" uid="uid://daj4rcvns0xtk" path="res://Assets/Textures/thumb 1.png" id="5_y74o3"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_f2w7u"]
 viewport_path = NodePath("Hand_Container/SubViewport")
@@ -10,13 +13,27 @@ viewport_path = NodePath("Hand_Container/SubViewport")
 script = ExtResource("1_fvenh")
 
 [node name="Hand_Container" type="Node2D" parent="."]
-position = Vector2(1018.99994, 473.00006)
-rotation = -0.36651915
+position = Vector2(1574.9999, 796.99994)
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="PhoneArm" type="Sprite2D" parent="Hand_Container"]
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("2_scj7t")
+
+[node name="Phone" type="Sprite2D" parent="Hand_Container"]
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("3_otxqc")
 
 [node name="Sprite2D" type="Sprite2D" parent="Hand_Container"]
+position = Vector2(12.465, -205)
+rotation = 0.12217305
+scale = Vector2(1.1902984, 1.1902986)
 texture = SubResource("ViewportTexture_f2w7u")
 
 [node name="SubViewport" type="SubViewport" parent="Hand_Container"]
 size = Vector2i(227, 412)
 
 [node name="PinballBoard" parent="Hand_Container/SubViewport" instance=ExtResource("2_fvenh")]
+
+[node name="Thumb1" type="Sprite2D" parent="Hand_Container"]
+texture = ExtResource("5_y74o3")

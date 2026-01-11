@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cnoe42obwtl5b"]
+[gd_scene load_steps=23 format=3 uid="uid://cnoe42obwtl5b"]
 
 [ext_resource type="Script" uid="uid://b1kj8237jrpvq" path="res://Scripts/main_level.gd" id="1_hyj3q"]
 [ext_resource type="PackedScene" uid="uid://6mf08mbydxlr" path="res://Scenes/player.tscn" id="2_7g051"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cw1ywp8m1wm4n" path="res://Scenes/Start_Screen.tscn" id="5_eoksa"]
 [ext_resource type="PackedScene" uid="uid://brcu0rywgugpg" path="res://Scenes/player_hand.tscn" id="6_g5c6q"]
 [ext_resource type="PackedScene" uid="uid://biq2paxupjaa7" path="res://Scenes/Death_screen.tscn" id="8_bbf45"]
+[ext_resource type="Texture2D" uid="uid://bu3ii5bhhuyg4" path="res://Assets/Textures/car interior.png" id="9_k2maj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7g051"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -53,8 +54,8 @@ size = Vector2(2.44, 8)
 [sub_resource type="PlaneMesh" id="PlaneMesh_7g051"]
 size = Vector2(2.44, 8)
 
-[sub_resource type="Animation" id="Animation_bbf45"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_eoksa"]
+resource_name = "Blackout_fade_in"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -62,10 +63,10 @@ tracks/0/path = NodePath(".:modulate:a")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1.0]
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
 }
 
 [sub_resource type="Animation" id="Animation_k2maj"]
@@ -83,8 +84,8 @@ tracks/0/keys = {
 "values": [1.0, 0.0]
 }
 
-[sub_resource type="Animation" id="Animation_eoksa"]
-resource_name = "Blackout_fade_in"
+[sub_resource type="Animation" id="Animation_bbf45"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -92,10 +93,10 @@ tracks/0/path = NodePath(".:modulate:a")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.0]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h8dhn"]
@@ -193,6 +194,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -16.650154)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_k2maj")
+
 [node name="Player_hand" parent="CanvasLayer" instance=ExtResource("6_g5c6q")]
 
 [node name="Score" type="Label" parent="CanvasLayer"]
@@ -218,9 +227,12 @@ script = ExtResource("2_y7i0d")
 [node name="StartScreen" parent="CanvasLayer" instance=ExtResource("5_eoksa")]
 
 [node name="DeathScreen" parent="CanvasLayer" instance=ExtResource("8_bbf45")]
+offset_top = 1.0
+offset_bottom = 1.0
 
 [node name="BlackOut" type="ColorRect" parent="CanvasLayer"]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

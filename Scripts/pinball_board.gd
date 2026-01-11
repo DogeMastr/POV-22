@@ -14,7 +14,7 @@ var fRightVel = 0
 
 func _ready() -> void:
 	restAngle = deg_to_rad(restAngle)
-	EventBus.is_dead = false
+
 	
 func _process(_delta: float):
 	# LEFT FLIPPER CONTROLS

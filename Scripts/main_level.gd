@@ -10,6 +10,8 @@ extends Node3D
 @onready var Person = preload("res://Scenes/Obstacles/Person.tscn")
 @onready var Bin = preload("res://Scenes/Obstacles/Bin.tscn")
 
+@onready var road_speed = $Walls/Street/SubViewport/Road_sprite
+
 @onready var spawn_points = $Spawn_Points.get_children()
 
 # UI
@@ -61,6 +63,9 @@ func _process(delta):
 	score_label.score_to_display = int(round(score))
 	speed_for_obstacle = -starting_speed * car_acceleration
 	cooldown_max = clamp(cooldown_max - (score/10000 * delta), .6, cooldown_max)
+	
+	road_speed.material.set_shader_parameter("speed", -car_acceleration)
+	
 	if not EventBus.is_dead:
 		score += (-speed_for_obstacle/10) * beer_multiplier 
 	
