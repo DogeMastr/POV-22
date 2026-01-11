@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://guv464dnju0t"]
+[gd_scene load_steps=13 format=3 uid="uid://guv464dnju0t"]
 
 [ext_resource type="PackedScene" uid="uid://cbjk8x8xblibm" path="res://Scenes/PinballBall.tscn" id="1_67n1w"]
 [ext_resource type="Script" uid="uid://bgqxbc1oqgv0v" path="res://Scripts/pinball_board.gd" id="1_iq81k"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://3yv3em723vf3" path="res://Scripts/pinball_spawner.gd" id="3_t8pbe"]
 [ext_resource type="Texture2D" uid="uid://10f7xuleo46k" path="res://Assets/Textures/pinball_flipper.png" id="5_jppec"]
 [ext_resource type="Texture2D" uid="uid://bcx4ljynqt4c7" path="res://Assets/Textures/pinball_bumper.png" id="7_jppec"]
+[ext_resource type="PackedScene" uid="uid://c7l85tmxekhjb" path="res://Scenes/pinballCreature.tscn" id="8_nc7qn"]
 
 [sub_resource type="Curve2D" id="Curve2D_iq81k"]
 _data = {
@@ -45,12 +46,13 @@ rotation = 3.1393352
 position = Vector2(-10, -14)
 
 [node name="PinballSpawner" type="Node2D" parent="."]
+position = Vector2(0, -3)
 script = ExtResource("3_t8pbe")
 pinball_packed = ExtResource("1_67n1w")
 launch_force = Vector2(-1000, -15000)
 
 [node name="SpawnPos" type="Marker2D" parent="PinballSpawner"]
-position = Vector2(223, 364)
+position = Vector2(225, 347)
 
 [node name="Walls" type="Node2D" parent="."]
 
@@ -85,7 +87,7 @@ scale = Vector2(1.1, 1)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/top"]
 position = Vector2(-3.6363635, -3)
-polygon = PackedVector2Array(0, 0, 239, 1, 240, 400, 219.0909, 400, 219.0909, 49, 219.0909, 44, 219.0909, 39, 218.18181, 35, 215.45454, 30, 211.81818, 24, 206.36363, 22, 200, 21, 188.18181, 21, 51.818176, 21, 40, 21, 37, 21, 32, 23, 28, 26, 25, 30, 23, 33, 21, 37, 20, 41, 20, 50, 20.000002, 215.75465, 20, 400, 0, 400)
+polygon = PackedVector2Array(0, -45, 271.81815, -49, 240, 400, 219.0909, 400, 219.0909, 357.32797, 220, 49, 220, 44, 220, 36, 218.18181, 31, 215.45454, 28, 211.81818, 24, 206.36363, 22, 200, 21, 187.27272, 21, 51.818176, 21, 40, 21, 37, 21, 32, 23, 28, 26, 25, 30, 23, 33, 21, 37, 20, 41, 20, 50, 20.000002, 215.75465, 20, 400, 0, 400)
 
 [node name="Polygon2D" type="Polygon2D" parent="Walls/top"]
 color = Color(0.88671374, 0.97912675, 0.76034045, 1)
@@ -125,13 +127,13 @@ position = Vector2(249, 136)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/middle3"]
 position = Vector2(-10, 26)
-polygon = PackedVector2Array(-78, 78, -73, 78, -69, 76, -66, 74, -64, 72, -61, 68, -60, 65, -59, 63, -59, 59, -59, 54, -59, -80, -61, -84, -64, -87, -67, -90, -69, -91, -73, -91, -75, -91, -79, -91, -87, -91, -89, -90, -92, -88, -94, -86, -96, -83, -98, -78, -98, -68, -98, -55, -100, -53, -102, -52, -106, -52, -108, -52, -110, -52, -111, -52, -112, -52, -113, -52, -116, -53, -119, -55, -119, -59, -119, -90, -123, -93, -127, -90, -127, -60, -127, -55, -126, -47, -121, -43, -116, -43, -114, -43, -112, -43, -109, -43, -106, -43, -104, -43, -99, -43, -96, -45, -94, -47, -92, -49, -90, -52, -90, -63, -90, -76, -89, -78, -87, -80, -85, -81, -81, -81, -78, -81, -76, -81, -73, -81, -74, -81, -70, -80, -69, -79, -68, -78, -67, -75, -67, -44, -67.00003, 40.046696, -67, 54, -67, 57, -68, 60, -69, 63, -71, 66, -74, 68, -78, 69, -81, 70, -83, 72, -83, 76, -81, 78)
+polygon = PackedVector2Array(-78, 78, -73, 78, -69, 76, -66, 74, -64, 72, -61, 68, -60, 65, -59, 63, -59, 59, -59, 54, -59, -80, -61, -84, -64, -87, -67, -90, -69, -91, -73, -91, -75, -91, -79, -91, -87, -91, -89, -90, -92, -88, -94, -86, -96, -83, -98, -78, -98, -68, -98, -55, -100, -53, -102, -52, -106, -52, -108, -52, -110, -52, -111, -52, -112, -52, -113, -52, -116, -53, -119, -55, -119, -59, -119, -88, -123, -91, -127, -88, -127, -60, -127, -55, -126, -47, -121, -43, -116, -43, -114, -43, -112, -43, -109, -43, -106, -43, -104, -43, -99, -43, -96, -45, -94, -47, -92, -49, -90, -52, -90, -63, -90, -76, -89, -78, -87, -80, -85, -81, -81, -81, -78, -81, -76, -81, -73, -81, -74, -81, -70, -80, -69, -79, -68, -78, -67, -75, -67, -44, -67.00003, 40.046696, -67, 54, -67, 57, -68, 60, -69, 63, -71, 66, -74, 68, -78, 69, -81, 70, -83, 72, -83, 76, -81, 78)
 
-[node name="bottom" type="StaticBody2D" parent="Walls"]
+[node name="SpawnLocation" type="StaticBody2D" parent="Walls"]
 position = Vector2(211, 376)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/bottom"]
-position = Vector2(5, 7)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/SpawnLocation"]
+position = Vector2(4, -14)
 shape = SubResource("RectangleShape2D_t8pbe")
 
 [node name="FlipperLeft" type="CharacterBody2D" parent="."]
@@ -165,7 +167,7 @@ shape = SubResource("CapsuleShape2D_8pyth")
 [node name="Bumpers" type="Node2D" parent="."]
 
 [node name="1" type="StaticBody2D" parent="Bumpers"]
-position = Vector2(91.99999, 92)
+position = Vector2(56, 106)
 scale = Vector2(0.7, 0.7)
 
 [node name="Sprite2D" type="Sprite2D" parent="Bumpers/1"]
@@ -175,7 +177,7 @@ texture = ExtResource("7_jppec")
 shape = SubResource("CircleShape2D_t8pbe")
 
 [node name="2" type="StaticBody2D" parent="Bumpers"]
-position = Vector2(75, 129)
+position = Vector2(57, 167)
 scale = Vector2(0.7, 0.7)
 
 [node name="Sprite2D" type="Sprite2D" parent="Bumpers/2"]
@@ -186,7 +188,7 @@ position = Vector2(-1.0899134e-05, -2.1798269e-05)
 shape = SubResource("CircleShape2D_t8pbe")
 
 [node name="3" type="StaticBody2D" parent="Bumpers"]
-position = Vector2(56, 82)
+position = Vector2(74.00001, 81)
 scale = Vector2(0.7, 0.7)
 
 [node name="Sprite2D" type="Sprite2D" parent="Bumpers/3"]
@@ -196,7 +198,7 @@ texture = ExtResource("7_jppec")
 shape = SubResource("CircleShape2D_t8pbe")
 
 [node name="4" type="StaticBody2D" parent="Bumpers"]
-position = Vector2(80, 51)
+position = Vector2(100, 47.000004)
 scale = Vector2(0.7, 0.7)
 
 [node name="Sprite2D" type="Sprite2D" parent="Bumpers/4"]
@@ -206,7 +208,7 @@ texture = ExtResource("7_jppec")
 shape = SubResource("CircleShape2D_t8pbe")
 
 [node name="5" type="StaticBody2D" parent="Bumpers"]
-position = Vector2(97, 61)
+position = Vector2(161, 56)
 scale = Vector2(0.7, 0.7)
 
 [node name="Sprite2D" type="Sprite2D" parent="Bumpers/5"]
@@ -216,11 +218,36 @@ texture = ExtResource("7_jppec")
 shape = SubResource("CircleShape2D_t8pbe")
 
 [node name="6" type="StaticBody2D" parent="Bumpers"]
-position = Vector2(57, 41)
+position = Vector2(57, 56)
 scale = Vector2(0.7, 0.7)
 
 [node name="Sprite2D" type="Sprite2D" parent="Bumpers/6"]
 texture = ExtResource("7_jppec")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bumpers/6"]
+shape = SubResource("CircleShape2D_t8pbe")
+
+[node name="Glorbo" parent="Bumpers" instance=ExtResource("8_nc7qn")]
+unique_name_in_owner = true
+position = Vector2(134, 168)
+
+[node name="7" type="StaticBody2D" parent="Bumpers"]
+position = Vector2(68, 138)
+scale = Vector2(0.7, 0.7)
+
+[node name="Sprite2D" type="Sprite2D" parent="Bumpers/7"]
+texture = ExtResource("7_jppec")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bumpers/7"]
+shape = SubResource("CircleShape2D_t8pbe")
+
+[node name="8" type="StaticBody2D" parent="Bumpers"]
+position = Vector2(67.00001, 195.99998)
+scale = Vector2(0.7, 0.7)
+
+[node name="Sprite2D" type="Sprite2D" parent="Bumpers/8"]
+texture = ExtResource("7_jppec")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bumpers/8"]
+position = Vector2(-1.0899134e-05, -2.1798269e-05)
 shape = SubResource("CircleShape2D_t8pbe")

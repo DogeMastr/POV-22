@@ -2,6 +2,8 @@ extends RigidBody2D
 
 var bumperStrength = 2000
 signal ballSunk(sinkhole: Node)
+signal hitGlorbo()
+signal backInChamber(ball: Node)
 
 func _on_body_entered(body: Node) -> void:
 	#print(body.get_parent().name)
@@ -24,3 +26,10 @@ func _on_body_entered(body: Node) -> void:
 		
 		# keep the ball still
 		set_deferred("freeze", true)
+		
+	if body.name == "Glorbo": #hit glorbo
+		hitGlorbo.emit()
+		
+	if body.name == "SpawnLocation": #fell back in the spawn location
+		backInChamber.emit(self)
+		

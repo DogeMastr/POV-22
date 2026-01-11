@@ -51,7 +51,7 @@ func _on_pinball_ball_sunk(sinkhole: Node) -> void:
 		sunk_sinkholes = []
 		for ball in $PinballSpawner.get_pinballs():
 			ball.freeze = false
-			ball.apply_force()
+			ball.apply_force(release_force)
 	else:
 		# spawn pinball
 		$PinballSpawner.spawn_uninit()
