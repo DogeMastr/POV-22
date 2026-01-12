@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://c7l85tmxekhjb"]
+[gd_scene load_steps=8 format=3 uid="uid://c7l85tmxekhjb"]
 
 [ext_resource type="Script" uid="uid://c7qghcn0geivo" path="res://Scripts/pinball_creature.gd" id="1_3gqe6"]
 [ext_resource type="Texture2D" uid="uid://dtw2adaeumkd0" path="res://Assets/Textures/glorpo1.png" id="1_jsuov"]
 [ext_resource type="Texture2D" uid="uid://c0tc6ewjgolo6" path="res://Assets/Textures/glorpo2.png" id="2_ydk5r"]
 [ext_resource type="Texture2D" uid="uid://cwip42hpxicxp" path="res://Assets/Textures/glorpo3.png" id="3_jcv7w"]
+[ext_resource type="SpriteFrames" uid="uid://dmfsi7jyo3ybp" path="res://Assets/Textures/glorpodie.gif" id="5_nwjpb"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_eftwa"]
 animations = [{
@@ -34,3 +35,16 @@ frame_progress = 0.034919813
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_4utly")
+
+[node name="RespawnTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+scale = Vector2(0.4691358, 0.4691358)
+sprite_frames = ExtResource("5_nwjpb")
+animation = &"gif"
+
+[connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timer_timeout"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]

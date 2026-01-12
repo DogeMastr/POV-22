@@ -1,0 +1,15 @@
+[remap]
+
+importer="import_gif_to_sprite_frames"
+type="SpriteFrames"
+uid="uid://dmfsi7jyo3ybp"
+path="res://.godot/imported/glorpodie.gif-67e59f89c25c7bdca7f43ef2c427200f.tres"
+
+[deps]
+
+source_file="res://Assets/Textures/glorpodie.gif"
+dest_files=["res://.godot/imported/glorpodie.gif-67e59f89c25c7bdca7f43ef2c427200f.tres"]
+
+[params]
+
+frames_per_second=30
